@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">TicTacToe</string>
+    <string name="Heading">Wel-Come Players</string>
+    <string name="img_desc">This is image description</string>
+</resources>
