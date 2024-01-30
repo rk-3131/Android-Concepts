@@ -53,13 +53,13 @@ public class MainActivity extends AppCompatActivity {
         if (gameState[imageNumber] == 2){
 
             if (activePlayer == 0){
-                img.setImageResource(R.drawable.tictacx);
+                img.setImageResource(R.drawable.o_image);
                 activePlayer = 1;
                 gameState[imageNumber] = 0;
                 status = findViewById(R.id.statusText);
                 status.setText("It's Y's turn");
             }else{
-                img.setImageResource(R.drawable.tictaco);
+                img.setImageResource(R.drawable.x_image);
                 activePlayer = 0;
                 gameState[imageNumber] = 1;
                 status = findViewById(R.id.statusText);
@@ -72,9 +72,25 @@ public class MainActivity extends AppCompatActivity {
         for (int [] winPos : winningPositions){
             if (gameState[winPos[0]] != 2 && gameState[winPos[0]] == gameState[winPos[1]] && gameState[winPos[1]] == gameState[winPos[2]]){
                 activeGame= false;
+                status = findViewById(R.id.statusText);
+                if (activePlayer == 0){
+                    status.setText("O has won in life");
+                }else{
+                    status.setText("X has won in life");
+                }
             }
-            activeGame = true;
-            activePlayer = 0;
+        }
+//        Check for the tie
+        boolean flag = true;
+        for (int i = 0; i < gameState.length; i++){
+            if (gameState[i] == 2){
+                flag = false;
+            }
+        }
+        if (flag){
+            status = findViewById(R.id.statusText);
+            status.setText("There is a tie here");
+            resetGame(view);
         }
     }
 
