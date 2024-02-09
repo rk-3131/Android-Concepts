@@ -21,23 +21,28 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
+        android:layout_marginEnd="36dp"
         android:text="Play"
         app:layout_constraintBaseline_toBaselineOf="@+id/pauseButton"
+        app:layout_constraintEnd_toStartOf="@+id/pauseButton"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/pauseButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="32dp"
+        android:layout_marginLeft="36dp"
+        android:layout_marginEnd="24dp"
         android:text="Pause"
         app:layout_constraintBaseline_toBaselineOf="@+id/stopButton"
+        app:layout_constraintEnd_toStartOf="@+id/stopButton"
         app:layout_constraintLeft_toRightOf="@+id/playButton" />
 
     <Button
         android:id="@+id/stopButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="36dp"
         android:layout_marginTop="40dp"
         android:layout_marginEnd="40dp"
         android:text="Stop"
@@ -56,7 +61,7 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/speakerText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Speaker"
@@ -66,5 +71,29 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/stopButton"
         app:layout_constraintVertical_bias="0.666" />
+
+    <SeekBar
+        android:id="@+id/progressSeek"
+        android:layout_width="362dp"
+        android:layout_height="19dp"
+        android:layout_marginTop="15dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.489"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/progressText"
+        app:layout_constraintVertical_bias="0.046" />
+
+    <TextView
+        android:id="@+id/progressText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:text="Progress"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/volSeek"
+        app:layout_constraintTop_toTopOf="@+id/volSeek" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

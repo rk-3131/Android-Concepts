@@ -9,6 +9,10 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.SeekBar;
+import android.widget.Toast;
+
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class MainActivity extends AppCompatActivity {
     MediaPlayer player;
@@ -17,30 +21,60 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         player = MediaPlayer.create(this, R.raw.chandaniyaa);
+//        here we have imported the media file into the system where we can play that track
 
         Button play = findViewById(R.id.playButton);
         Button pause = findViewById(R.id.pauseButton);
         Button stop = findViewById(R.id.stopButton);
 
         SeekBar volBar = findViewById(R.id.volSeek);
+        SeekBar progBar = findViewById(R.id.progressSeek);
 
         AudioManager audioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
+//        getSystemServices is the method which will give us the results of all the services which are provided by the system
+//        Context has many other services like blutooth and other as well
 
-        int maxVol = audioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC);
-        volBar.setMax(maxVol);
+        int maxValue = audioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC);
+        int currValue = audioManager.getStreamVolume(AudioManager.STREAM_MUSIC);
 
-        int curVol=audioManager.getStreamVolume(AudioManager.STREAM_MUSIC);
-        volBar.setProgress(curVol);
+        volBar.setMax(maxValue);
+        volBar.setProgress(currValue);
 
         volBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
-            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                audioManager.setStreamVolume(AudioManager.STREAM_MUSIC,progress,0);
+            public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
+                audioManager.setStreamVolume(AudioManager.STREAM_MUSIC, i, 0);
             }
+
             @Override
             public void onStartTrackingTouch(SeekBar seekBar) {
 
             }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
+            }
+        });
+
+        progBar.setMax(player.getDuration());
+        new Timer().scheduleAtFixedRate(new TimerTask() {
+            @Override
+            public void run() {
+                progBar.setProgress(player.getCurrentPosition());
+            }
+        }, 0, 5000);
+        progBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
+                player.seekTo(i);
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
 
@@ -64,7 +98,9 @@ public class MainActivity extends AppCompatActivity {
         stop.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                player.stop();
+                player.seekTo(0);
+                progBar.setProgress(0);
+                player.pause();
             }
         });
     }
