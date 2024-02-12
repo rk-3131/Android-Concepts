@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
         finite.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                new CountDownTimer(5000, 1000){
+                new CountDownTimer(1000, 1000){
                     @Override
                     public void onTick(long l) {
                         Toast.makeText(MainActivity.this, "Toast Number " + countFin, Toast.LENGTH_SHORT).show();
