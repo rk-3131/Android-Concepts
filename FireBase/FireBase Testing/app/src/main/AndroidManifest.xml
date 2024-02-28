@@ -13,6 +13,9 @@
         android:theme="@style/Theme.FireBaseTesting"
         tools:targetApi="31">
         <activity
+            android:name=".NewUserCreation"
+            android:exported="false" />
+        <activity
             android:name=".UserLogged"
             android:exported="false" />
         <activity
