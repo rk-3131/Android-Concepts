@@ -38,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
         EditText email = findViewById(R.id.emailText);
         EditText password = findViewById(R.id.passText);
         Button login = findViewById(R.id.signInButton);
+        Button googleButton = findViewById(R.id.googleSignInButton);
         FirebaseAuth mAuth = FirebaseAuth.getInstance();
         TextView signUp = findViewById(R.id.signUpText);
 
@@ -67,7 +68,6 @@ public class MainActivity extends AppCompatActivity {
                         Toast.makeText(MainActivity.this, "Some error occured " + e.toString(), Toast.LENGTH_SHORT).show();
                     }
                 });
-                
             }
         });
 
@@ -75,6 +75,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(MainActivity.this, NewUserCreation.class));
+            }
+        });
+
+        googleButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
             }
         });
     }
