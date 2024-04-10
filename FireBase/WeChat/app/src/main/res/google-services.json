@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "826632456220",
+    "project_id": "whatsapp-clone-2c70d",
+    "storage_bucket": "whatsapp-clone-2c70d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:826632456220:android:7a9c8866dbaccace5b37d9",
+        "android_client_info": {
+          "package_name": "com.example.wechat"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBjIfhm2vRUd-_MkyepCMQ_HrB9K7t40EQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

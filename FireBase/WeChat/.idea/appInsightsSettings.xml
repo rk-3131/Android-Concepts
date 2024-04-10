@@ -8,10 +8,10 @@
             <InsightsFilterSettings>
               <option name="connection">
                 <ConnectionSetting>
-                  <option name="appId" value="PLACEHOLDER" />
-                  <option name="mobileSdkAppId" value="" />
-                  <option name="projectId" value="" />
-                  <option name="projectNumber" value="" />
+                  <option name="appId" value="com.example.wechat" />
+                  <option name="mobileSdkAppId" value="1:826632456220:android:7a9c8866dbaccace5b37d9" />
+                  <option name="projectId" value="whatsapp-clone-2c70d" />
+                  <option name="projectNumber" value="826632456220" />
                 </ConnectionSetting>
               </option>
               <option name="signal" value="SIGNAL_UNSPECIFIED" />
