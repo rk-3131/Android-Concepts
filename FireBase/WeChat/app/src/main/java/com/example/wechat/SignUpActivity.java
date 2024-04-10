@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -44,6 +45,18 @@ public class SignUpActivity extends AppCompatActivity {
                 String nameStr = name.getText().toString();
                 String emailStr = email.getText().toString();
                 String passwordStr = password.getText().toString();
+                
+                if (emailStr.isEmpty() || !Patterns.EMAIL_ADDRESS.matcher(emailStr).matches()){
+                    Toast.makeText(SignUpActivity.this, "Enter the valid email address", Toast.LENGTH_SHORT).show();
+                    email.setText("");
+                    return;
+                }
+                
+                if (passwordStr.isEmpty() || passwordStr.length() < 6){
+                    Toast.makeText(SignUpActivity.this, "Enter valid password", Toast.LENGTH_SHORT).show();
+                    password.setText("");
+                    return;
+                }
 
 //                Toast.makeText(SignUpActivity.this, "Email " + emailStr + " and Name: " + nameStr, Toast.LENGTH_SHORT).show();
 
@@ -52,15 +65,13 @@ public class SignUpActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()){
                             Toast.makeText(SignUpActivity.this, "User has been created", Toast.LENGTH_SHORT).show();
-                        }else{
-                            Toast.makeText(SignUpActivity.this, "There was some error", Toast.LENGTH_SHORT).show();
                         }
                     }
                 }).addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-                        Toast.makeText(SignUpActivity.this, "Exception " + e.toString(), Toast.LENGTH_SHORT).show();
-                        Log.d("RKTAG", e.toString());
+                        Toast.makeText(SignUpActivity.this, "Some error occured while signing up", Toast.LENGTH_SHORT).show();
+//                        Log.d("RKTAG", e.toString());
                     }
                 });
 
