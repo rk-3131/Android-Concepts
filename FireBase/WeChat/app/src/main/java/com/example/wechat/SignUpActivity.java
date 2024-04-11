@@ -15,6 +15,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.wechat.Models.Users;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
@@ -24,11 +25,14 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 public class SignUpActivity extends AppCompatActivity {
 
     FirebaseAuth auth;
     ProgressDialog progressDialog;
+    FirebaseFirestore firestore;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +49,7 @@ public class SignUpActivity extends AppCompatActivity {
 
         auth = FirebaseAuth.getInstance();
         progressDialog = new ProgressDialog(SignUpActivity.this);
+        firestore = FirebaseFirestore.getInstance();
 
 
         signUpButton.setOnClickListener(new View.OnClickListener() {
@@ -75,6 +80,24 @@ public class SignUpActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()){
+                            Users user = new Users(nameStr, emailStr, passwordStr);
+                            String uid = task.getResult().getUser().getUid();
+                            firestore.collection("Users").add(user).addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
+                                @Override
+                                public void onComplete(@NonNull Task<DocumentReference> task) {
+                                    if (task.isSuccessful()){
+                                        Toast.makeText(SignUpActivity.this, "Data added to the database successfully", Toast.LENGTH_SHORT).show();
+                                    }
+                                }
+                            }).addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    Toast.makeText(SignUpActivity.this, e.toString(), Toast.LENGTH_SHORT).show();
+                                    Log.d("RKTAG", e.toString());
+                                }
+                            });
+
+                            Log.d("RKTAG", uid);
                             Toast.makeText(SignUpActivity.this, "User has been created", Toast.LENGTH_SHORT).show();
                             progressDialog.dismiss();
                         }
