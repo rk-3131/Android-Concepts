@@ -1,5 +1,6 @@
 package com.example.wechat;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -10,7 +11,13 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+
 public class SignInActivity extends AppCompatActivity {
+    FirebaseAuth auth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,13 +30,24 @@ public class SignInActivity extends AppCompatActivity {
         Button google = findViewById(R.id.googleSignIn);
         Button facebook = findViewById(R.id.facebookSignIn);
 
+        auth = FirebaseAuth.getInstance();
+
+        if (auth.getCurrentUser() != null){
+            startActivity(new Intent(SignInActivity.this, MainActivity.class));
+        }
         signIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 String phoneEmailStr = emailOrNumber.getText().toString();
                 String passwordStr = password.getText().toString();
 
-                Toast.makeText(SignInActivity.this, "Email / Phone " + phoneEmailStr, Toast.LENGTH_SHORT).show();
+                auth.signInWithEmailAndPassword(phoneEmailStr, passwordStr).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        Toast.makeText(SignInActivity.this, "Sign in Successful!", Toast.LENGTH_SHORT).show();
+                        startActivity(new Intent(SignInActivity.this, MainActivity.class));
+                    }
+                });
             }
         });
         
