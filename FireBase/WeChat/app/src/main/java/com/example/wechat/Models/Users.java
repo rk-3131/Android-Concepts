@@ -1,11 +1,19 @@
 package com.example.wechat.Models;
 
+import com.google.firebase.database.PropertyName;
+
 public class Users {
+    @PropertyName("name")
     String name;
+    @PropertyName("profilePicture")
     String profilePicture;
+    @PropertyName("email")
     String email;
+    @PropertyName("userId")
     String userId;
+    @PropertyName("lastMessage")
     String lastMessage;
+    @PropertyName("password")
     String password;
 
     public Users(String name, String profilePicture, String email, String userId, String lastMessage, String password) {

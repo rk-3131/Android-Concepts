@@ -24,6 +24,7 @@ import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -32,7 +33,8 @@ public class SignUpActivity extends AppCompatActivity {
 
     FirebaseAuth auth;
     ProgressDialog progressDialog;
-    FirebaseFirestore firestore;
+//    FirebaseFirestore firestore;
+    FirebaseDatabase database;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,7 +51,10 @@ public class SignUpActivity extends AppCompatActivity {
 
         auth = FirebaseAuth.getInstance();
         progressDialog = new ProgressDialog(SignUpActivity.this);
-        firestore = FirebaseFirestore.getInstance();
+//        firestore = FirebaseFirestore.getInstance();
+        database = FirebaseDatabase.getInstance("https://whatsapp-clone-2c70d-default-rtdb.asia-southeast1.firebasedatabase.app/");
+//        Here while getting the instance of the database we had to pass the database link as it is clearly written in the documentation that if we have our database which is outside of the US then we have to mention that url of the database and then it will be much easy
+        DatabaseReference reference = database.getReference("User");
 
 
         signUpButton.setOnClickListener(new View.OnClickListener() {
@@ -59,7 +64,8 @@ public class SignUpActivity extends AppCompatActivity {
                 String emailStr = email.getText().toString();
                 String passwordStr = password.getText().toString();
 
-                progressDialog.setTitle("SignUp Progress");
+                progressDialog.setTitle("Signing Up");
+                progressDialog.setMessage("Please wait for while!");
                 
                 if (emailStr.isEmpty() || !Patterns.EMAIL_ADDRESS.matcher(emailStr).matches()){
                     Toast.makeText(SignUpActivity.this, "Enter the valid email address", Toast.LENGTH_SHORT).show();
@@ -82,22 +88,20 @@ public class SignUpActivity extends AppCompatActivity {
                         if (task.isSuccessful()){
                             Users user = new Users(nameStr, emailStr, passwordStr);
                             String uid = task.getResult().getUser().getUid();
-                            firestore.collection("Users").add(user).addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
+                            reference.child(uid).setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override
-                                public void onComplete(@NonNull Task<DocumentReference> task) {
-                                    if (task.isSuccessful()){
-                                        Toast.makeText(SignUpActivity.this, "Data added to the database successfully", Toast.LENGTH_SHORT).show();
-                                    }
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    Log.d("RKTAG", "Data added to the database sucessfully");
+                                    Toast.makeText(SignUpActivity.this, "Data added to database!", Toast.LENGTH_SHORT).show();
                                 }
                             }).addOnFailureListener(new OnFailureListener() {
                                 @Override
                                 public void onFailure(@NonNull Exception e) {
-                                    Toast.makeText(SignUpActivity.this, e.toString(), Toast.LENGTH_SHORT).show();
-                                    Log.d("RKTAG", e.toString());
+                                    Toast.makeText(SignUpActivity.this, "Some error while adding data!", Toast.LENGTH_SHORT).show();
                                 }
                             });
 
-                            Log.d("RKTAG", uid);
+//                            Log.d("RKTAG", uid);
                             Toast.makeText(SignUpActivity.this, "User has been created", Toast.LENGTH_SHORT).show();
                             progressDialog.dismiss();
                         }
