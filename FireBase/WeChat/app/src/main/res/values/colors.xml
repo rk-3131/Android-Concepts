@@ -2,4 +2,8 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="primaryColorDark">#075e54</color>
+    <color name="primaryColorLight">#128c7e</color>
+    <color name="bgColor">#d3d3d3</color>
+    <color name="textColor">#1A2F5A</color>
 </resources>

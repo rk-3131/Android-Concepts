@@ -34,6 +34,7 @@ public class SignInActivity extends AppCompatActivity {
 
         if (auth.getCurrentUser() != null){
             startActivity(new Intent(SignInActivity.this, MainActivity.class));
+            finish();
         }
         signIn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -46,6 +47,7 @@ public class SignInActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         Toast.makeText(SignInActivity.this, "Sign in Successful!", Toast.LENGTH_SHORT).show();
                         startActivity(new Intent(SignInActivity.this, MainActivity.class));
+                        finish();
                     }
                 });
             }

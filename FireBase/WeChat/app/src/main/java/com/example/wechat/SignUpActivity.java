@@ -102,8 +102,9 @@ public class SignUpActivity extends AppCompatActivity {
                             });
 
 //                            Log.d("RKTAG", uid);
-                            Toast.makeText(SignUpActivity.this, "User has been created", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(SignUpActivity.this, "User created, Please login", Toast.LENGTH_SHORT).show();
                             progressDialog.dismiss();
+                            startActivity(new Intent(SignUpActivity.this, SignInActivity.class));
                         }
                     }
                 }).addOnFailureListener(new OnFailureListener() {

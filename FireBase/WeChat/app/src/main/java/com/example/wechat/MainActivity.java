@@ -24,6 +24,10 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         auth = FirebaseAuth.getInstance();
+
+        if (auth.getCurrentUser() == null){
+            startActivity(new Intent(MainActivity.this, SignInActivity.class));
+        }
     }
 
     @Override
@@ -42,6 +46,7 @@ public class MainActivity extends AppCompatActivity {
         }else if (ansId == R.id.menuLogout){
             auth.signOut();
             startActivity(new Intent(MainActivity.this, SignInActivity.class));
+            finish();
         }
         return super.onOptionsItemSelected(item);
     }

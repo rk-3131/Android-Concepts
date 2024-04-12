@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#8A8A8C"
+    android:background="@color/bgColor"
     android:orientation="vertical">
 
     <LinearLayout
@@ -26,13 +26,14 @@
         android:layout_marginStart="40dp"
         android:layout_marginTop="75dp"
         android:layout_marginEnd="40dp"
-        android:background="#F8F7F7"
+        android:background="@drawable/edittext_border"
         android:ems="10"
         android:hint="Email/Phone"
         android:inputType="textEmailAddress"
-        android:textColor="#8A8A8C"
-        android:textColorHint="#8A8A8C"
-        android:textSize="24sp" />
+        android:paddingLeft="10dp"
+        android:textColor="#1A2F5A"
+        android:textColorHint="#1A2F5A"
+        android:textSize="24dp" />
 
     <EditText
         android:id="@+id/signInPassword"
@@ -41,13 +42,14 @@
         android:layout_marginStart="40dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="40dp"
-        android:background="#F8F7F7"
+        android:background="@drawable/edittext_border"
         android:ems="10"
         android:hint="Password"
         android:inputType="textPassword"
-        android:textColor="#8A8A8C"
-        android:textColorHint="#8A8A8C"
-        android:textSize="24sp" />
+        android:paddingLeft="10dp"
+        android:textColor="@color/textColor"
+        android:textColorHint="@color/textColor"
+        android:textSize="24dp" />
 
     <TextView
         android:id="@+id/signUpLink"
@@ -67,7 +69,8 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="20dp"
-        android:backgroundTint="#F6F8FB"
+        android:background="@drawable/edittext_border"
+        android:backgroundTint="@color/bgColor"
         android:gravity="center"
         android:text="SIGN IN"
         android:textColor="#1A2F5A" />
@@ -84,7 +87,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="15dp"
-            android:backgroundTint="#F6F8FB"
+            android:background="@drawable/edittext_border"
+            android:backgroundTint="@color/bgColor"
             android:drawableLeft="@drawable/google_logo"
             android:text="Google"
             android:textColor="#1A2F5A" />
@@ -94,7 +98,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="15dp"
-            android:backgroundTint="#F6F8FB"
+            android:background="@drawable/edittext_border"
+            android:backgroundTint="@color/bgColor"
             android:drawableLeft="@drawable/fb_logo"
             android:text="Facebook"
             android:textColor="#1A2F5A" />
