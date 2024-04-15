@@ -16,18 +16,21 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.wechat.Models.Users;
+import com.google.android.gms.auth.api.identity.BeginSignInRequest;
+import com.google.android.gms.auth.api.identity.SignInCredential;
+import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.Firebase;
 import com.google.firebase.FirebaseApp;
+import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.GoogleAuthProvider;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.FirebaseFirestore;
 
 public class SignUpActivity extends AppCompatActivity {
 
@@ -55,6 +58,8 @@ public class SignUpActivity extends AppCompatActivity {
         database = FirebaseDatabase.getInstance("https://whatsapp-clone-2c70d-default-rtdb.asia-southeast1.firebasedatabase.app/");
 //        Here while getting the instance of the database we had to pass the database link as it is clearly written in the documentation that if we have our database which is outside of the US then we have to mention that url of the database and then it will be much easy
         DatabaseReference reference = database.getReference("User");
+
+
 
 
         signUpButton.setOnClickListener(new View.OnClickListener() {

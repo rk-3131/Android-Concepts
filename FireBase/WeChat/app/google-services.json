@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "826632456220",
+    "firebase_url": "https://whatsapp-clone-2c70d-default-rtdb.asia-southeast1.firebasedatabase.app",
     "project_id": "whatsapp-clone-2c70d",
     "storage_bucket": "whatsapp-clone-2c70d.appspot.com"
   },
@@ -12,7 +13,20 @@
           "package_name": "com.example.wechat"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "826632456220-3ev9bs610hmbgcu7cqf20p9q3v2vnstq.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.wechat",
+            "certificate_hash": "0ce76d7a5675818b1abb941da983f4dd7418f083"
+          }
+        },
+        {
+          "client_id": "826632456220-oidou4oqnn8dd4dsvm8a2ca3lal9fsa2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyBjIfhm2vRUd-_MkyepCMQ_HrB9K7t40EQ"
@@ -20,7 +34,12 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "826632456220-oidou4oqnn8dd4dsvm8a2ca3lal9fsa2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     }

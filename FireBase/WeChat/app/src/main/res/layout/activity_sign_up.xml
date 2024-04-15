@@ -31,9 +31,11 @@
         android:hint="Your Name"
         android:inputType="text"
         android:paddingLeft="10dp"
+        android:paddingTop="3dp"
+        android:paddingBottom="3dp"
         android:textColor="#1A2F5A"
         android:textColorHint="#1A2F5A"
-        android:textSize="24dp" />
+        android:textSize="20sp" />
 
     <EditText
         android:id="@+id/signInEmail"
@@ -47,9 +49,11 @@
         android:hint="Email"
         android:inputType="textEmailAddress"
         android:paddingLeft="10dp"
+        android:paddingTop="3dp"
+        android:paddingBottom="3dp"
         android:textColor="#1A2F5A"
         android:textColorHint="#1A2F5A"
-        android:textSize="24dp" />
+        android:textSize="20sp" />
 
     <EditText
         android:id="@+id/signInPassword"
@@ -63,9 +67,11 @@
         android:hint="Password"
         android:inputType="textPassword"
         android:paddingLeft="10dp"
+        android:paddingTop="3dp"
+        android:paddingBottom="3dp"
         android:textColor="@color/textColor"
         android:textColorHint="@color/textColor"
-        android:textSize="24dp" />
+        android:textSize="20sp" />
 
     <TextView
         android:id="@+id/signUpLink"
