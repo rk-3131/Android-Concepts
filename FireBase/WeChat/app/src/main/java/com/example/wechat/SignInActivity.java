@@ -107,7 +107,7 @@ public class SignInActivity extends AppCompatActivity {
             // check condition 
             try {
                 GoogleSignInAccount account = signInAccountTask.getResult(ApiException.class);
-                Toast.makeText(this, "Auht with "+ account.getId(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Auth with "+ account.getId(), Toast.LENGTH_SHORT).show();
                 firebaseAuthWithGoogle(account.getIdToken());
             }
             catch (ApiException e){
