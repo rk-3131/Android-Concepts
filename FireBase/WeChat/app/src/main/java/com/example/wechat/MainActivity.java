@@ -2,6 +2,7 @@ package com.example.wechat;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.viewpager.widget.ViewPager;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -14,10 +15,14 @@ import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.wechat.Adapters.FragmentAdapter;
+import com.google.android.material.tabs.TabLayout;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class MainActivity extends AppCompatActivity {
     FirebaseAuth auth;
+    ViewPager myPager;
+    TabLayout myTabLayout;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,6 +33,12 @@ public class MainActivity extends AppCompatActivity {
         if (auth.getCurrentUser() == null){
             startActivity(new Intent(MainActivity.this, SignInActivity.class));
         }
+
+        myPager = findViewById(R.id.viewPager);
+        myTabLayout = findViewById(R.id.tabLayout);
+
+        myPager.setAdapter(new FragmentAdapter(getSupportFragmentManager()));
+        myTabLayout.setupWithViewPager(myPager);
     }
 
     @Override
